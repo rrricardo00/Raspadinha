@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Nome do site</title>
+
+    <link href="../_DEFAULT/header.css" rel="stylesheet" type="text/css">
+    <link href="../_DEFAULT/style.css" rel="stylesheet" type="text/css">
+    <link href="_css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="canta-container-w" style="width: 1279px; max-width: 100%;">
+
+        <div class="scratch-pad-cont">
+            <div class="titulo-chamada">Raspe os espaçoes abaixo e escolha qual promoção você quer participar:</div>
+            <div class="scratch-pad">
+                <p class="titulo-scratch">LOREM IPSUM DOLOR ASSIMET</p>
+                <div class="container-scratch">
+                    <div class="scratch1 img-container">
+                     
+                    </div>
+                    <div class="scratch2 img-container">
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+
+<script src="_js/jquery.js"></script>
+<script src="_js/script.js"></script>
+
+<script>
+
+    let linkScracth = ["https://www.uol.com.br", "https://www.google.com.br", "https://www.gamevicio.com.br",]
+    let imgScratch = ['img.jpg', 'slide2.jpg', 'slide3.jpg',]
+    let tamanhoArray = document.querySelectorAll('.img-container').length - 1;
+
+    for (let index = 0; index <= tamanhoArray; index++) {
+        $(`.scratch${[index + 1]}`).wScratchPad({
+            size: 20,          // The size of the brush/scratch.
+            bg: imgScratch[index],  // Background (image path or hex color).
+            fg: '#C7C7C7',  // Foreground (image path or hex color).
+            realtime: true,       // Calculates percentage in realitime.
+            scratchDown: null,       // Set scratchDown callback.
+            scratchUp: null,       // Set scratchUp callback.
+            scratchMove: function (e, percent) {
+                $('#card').html(percent);
+
+                if (percent >= 50) {
+                    this.clear();
+                    document.querySelector(`.scratch${[index + 1]} img`).addEventListener('click', (e) => window.location.href = linkScracth[index])
+                    document.querySelector(`.scratch${[index + 1]} img`).style.zIndex = "999";
+                }
+            },       // Set scratcMove callback.
+            cursor: 'pointer' // Set cursor.
+        });
+    }
+
+</script>
+
+</html>
